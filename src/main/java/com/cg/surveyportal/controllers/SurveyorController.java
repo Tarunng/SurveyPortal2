@@ -44,9 +44,9 @@ public class SurveyorController {
 	}
 	
 	@GetMapping("/findbyid/{id}")
-	private ResponseEntity<Surveyor> getSurveyorById(@PathVariable("id") String id) throws NumberFormatException, SurveyorNotFoundException
+	private ResponseEntity<Surveyor> getSurveyorById(@PathVariable("id") Long id) throws NumberFormatException, SurveyorNotFoundException
 	{
-		return new ResponseEntity<>(surveyorService.getById(Long.parseLong(id)),HttpStatus.OK);
+		return new ResponseEntity<>(surveyorService.getById(id),HttpStatus.OK);
 	}
 	
 	@GetMapping("/findbyusername/{username}")

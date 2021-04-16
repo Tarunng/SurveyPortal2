@@ -80,6 +80,7 @@ public class SurveyorServiceImpl implements ISurveyorService {
 	@Override
 	public List<Surveyor> getAllSurveyors() {
 		return surveyorRepository.findAll();
+		
 	}
 
 
