@@ -2,10 +2,8 @@ package com.cg.surveyportal.entities;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,14 +19,14 @@ public class Surveyor {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
-	@Column(nullable = false,unique = true, length = 20)	
+	@Column(length = 20)	
     private String username;
-	@Column(nullable = false, length = 20)
+	@Column(length = 20)
     private String firstName;
-	@Column(nullable = false, length = 20)
+	@Column(length = 20)
     private String lastName;
-	@JsonManagedReference
-    @OneToMany(mappedBy="surveyor", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="surveyor")
+    @JsonManagedReference("surveyor_surveys")
     private List<Survey> surveys;
 	
 	public Surveyor() {

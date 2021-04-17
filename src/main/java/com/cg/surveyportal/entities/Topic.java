@@ -1,14 +1,12 @@
 package com.cg.surveyportal.entities;
 
 import java.util.List;
-import javax.persistence.CascadeType;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -20,22 +18,22 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 public class Topic {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long id;
+	private Long id;
 	@Column(length = 50)
     private String name;
 	@Column(length = 100)
     private String description;
-	@JsonManagedReference
-    @OneToMany(mappedBy="topic", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="topic")
+    @JsonManagedReference("topic_surveys")
     private List<Survey> surveys;
-	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn( referencedColumnName = "id")
+	@OneToOne(optional = true)
+	@JsonManagedReference("topic_surveyor")
 	private Surveyor surveyor;
 	
 	//Constructors
 	public Topic() {
 	}
-	public Topic(long id, String name, String description, List<Survey> surveys, Surveyor surveyor) {
+	public Topic(Long id, String name, String description, List<Survey> surveys, Surveyor surveyor) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -44,10 +42,10 @@ public class Topic {
 		this.surveyor = surveyor;
 	}
 	//getters and setters
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getName() {

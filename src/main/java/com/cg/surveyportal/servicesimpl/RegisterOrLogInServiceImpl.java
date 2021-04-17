@@ -59,7 +59,7 @@ public class RegisterOrLogInServiceImpl implements IRegisterOrLogInService {
 		if(password.equals(user.getPassword()))
 			return "Log in successfully as a "+user.getRole()+".";
 		else
-			return "Log in fialed as usename or password did not match.";
+			return "Log in failed as usename or password did not match.";
 	}
 
 }

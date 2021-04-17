@@ -3,14 +3,11 @@ package com.cg.surveyportal.entities;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -33,25 +30,21 @@ public class Survey {
     private LocalDateTime endDateTime;
 	@Column
     private Boolean isActive;
-	@JsonBackReference
-	@ManyToOne(fetch = FetchType.LAZY, optional = true, cascade = CascadeType.ALL)
-	@JoinColumn(name = "topic")
+	@ManyToOne
+	@JsonBackReference("topic_surveys")
     private Topic topic;
-	@JsonBackReference
-	@ManyToOne(fetch = FetchType.LAZY, optional = true, cascade = CascadeType.ALL)
-	@JoinColumn(name = "id", insertable = false, updatable = false, nullable = true)
+	@ManyToOne
+	@JsonBackReference("surveyor_surveys")
     private Surveyor surveyor;
-	@JsonManagedReference
-    @OneToMany(mappedBy="survey", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<Question> questions; 
-	@OneToMany(mappedBy="survey", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="survey")
+	@JsonManagedReference("surveys_feedback")
 	private List<Feedback> feedback;
 	
 	//Constructors
 	public Survey() {
 	}
 	public Survey(Long id, String description, LocalDateTime publishedDateTime, LocalDateTime endDateTime,
-			Boolean isActive, Topic topic, Surveyor surveyor, List<Question> questions, List<Feedback> feedback) {
+			Boolean isActive, Topic topic, Surveyor surveyor, List<Feedback> feedback) {
 		super();
 		this.id = id;
 		this.description = description;
@@ -60,7 +53,6 @@ public class Survey {
 		this.isActive = isActive;
 		this.topic = topic;
 		this.surveyor = surveyor;
-		this.questions = questions;
 		this.feedback = feedback;
 	}
 	//Getters and setters
@@ -106,12 +98,7 @@ public class Survey {
 	public void setSurveyor(Surveyor surveyor) {
 		this.surveyor = surveyor;
 	}
-	public List<Question> getQuestions() {
-		return questions;
-	}
-	public void setQuestions(List<Question> questions) {
-		this.questions = questions;
-	}
+	
 	public List<Feedback> getFeedback() {
 		return feedback;
 	}
@@ -122,7 +109,7 @@ public class Survey {
 	public String toString() {
 		return "Survey [id=" + id + ", description=" + description + ", publishedDateTime=" + publishedDateTime
 				+ ", endDateTime=" + endDateTime + ", isActive=" + isActive + ", topic=" + topic + ", surveyor="
-				+ surveyor + ", questions=" + questions + ", feedback=" + feedback + "]";
-	}
+				+ surveyor + ", feedback=" + feedback + "]";
+	}	
 	
-}
+}	
