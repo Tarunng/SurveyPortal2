@@ -1,6 +1,5 @@
 package com.cg.surveyportal;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
@@ -28,7 +27,7 @@ import com.cg.surveyportal.exceptions.ParticipantNotFoundException;
 import com.cg.surveyportal.exceptions.SurveyorNotFoundException;
 import com.cg.surveyportal.repositories.ISurveyorRepository;
 import com.cg.surveyportal.services.ISurveyorService;
-import com.google.common.base.Optional;
+import java.util.Optional;
 
 
 @RunWith(SpringRunner.class)
@@ -114,7 +113,7 @@ public class SurveyorServiceImplTest {
 	public void testgetById() throws SurveyorNotFoundException 
 	{
 		Mockito.when(surveyorRepository.findById(sv.getId())).thenReturn(Optional.of(sv));
-		assertEquals(sv,surveyorService.getById(21l));
+		assertEquals(sv,surveyorService.getById(20l));
 	}
 	
 	
@@ -246,34 +245,27 @@ public class SurveyorServiceImplTest {
 	@DisplayName("Positive Test Case for remove record by id")
 	public void testremoveById() throws InvalidSurveyorException
 	{
-		Surveyor serveyor = new Surveyor();
-		serveyor.setId(23l);
-		serveyor.setFirstName("David");
-		serveyor.setLastName("Austin");
-		serveyor.setUsername("dav_aus");
-		serveyor.setSurveys(null);
 		
-		String s = "Data Deleted Successfully";
 		
-		assertThat(surveyorService.removeById(23l)).isEqualTo(s);
-		Mockito.verify(surveyorRepository).deleteById(23l);
+		//String s = "Data Deleted Successfully";
+		surveyorRepository.deleteById(sv.getId());
+        assertEquals(0, surveyorRepository.count());
+		//assertThat(surveyorService.removeById(20l)).isEqualTo(s);
+		//Mockito.verify(surveyorRepository).deleteById(20l);
 	}
 	
 	@Test
 	@DisplayName("Negative Test Case for remove record by id")
 	public void testremoveByIdNegative() throws InvalidSurveyorException
 	{
-		Surveyor serveyor = new Surveyor();
-		serveyor.setId(23l);
-		serveyor.setFirstName("David");
-		serveyor.setLastName("Austin");
-		serveyor.setUsername("dav_aus");
-		serveyor.setSurveys(null);
 		
-		String s = "Data Not Deleted Successfully";
 		
-		assertThat(surveyorService.removeById(23l)).isNotEqualTo(s);
-		Mockito.verify(surveyorRepository).deleteById(23l);
+		//String s = "Data Not Deleted Successfully";
+		surveyorRepository.deleteById(sv.getId());
+        assertNotEquals(1, surveyorRepository.count());
+        
+//		assertThat(surveyorService.removeById(23l)).isNotEqualTo(s);
+//		Mockito.verify(surveyorRepository).deleteById(23l);
 	}
 	
 	
