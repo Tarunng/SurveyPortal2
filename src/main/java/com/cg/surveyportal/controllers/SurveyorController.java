@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -62,7 +63,7 @@ public class SurveyorController {
 	}
 	
 	@PostMapping("/add")
-	private ResponseEntity<String> addSurveyor(@PathVariable Surveyor surveyor) throws InvalidSurveyorException
+	private ResponseEntity<String> addSurveyor(@RequestBody Surveyor surveyor) throws InvalidSurveyorException
 	{
 		return new ResponseEntity<>(surveyorService.add(surveyor),HttpStatus.ACCEPTED);
 	}
@@ -74,7 +75,7 @@ public class SurveyorController {
 	}
 	
 	@PutMapping("update")
-	private ResponseEntity<String> updateRecord(@PathVariable Surveyor surveyor) throws InvalidSurveyorException, SurveyorNotFoundException
+	private ResponseEntity<String> updateRecord(@RequestBody Surveyor surveyor) throws InvalidSurveyorException, SurveyorNotFoundException
 	{
 		return new ResponseEntity<>(surveyorService.update(surveyor),HttpStatus.OK);
 		

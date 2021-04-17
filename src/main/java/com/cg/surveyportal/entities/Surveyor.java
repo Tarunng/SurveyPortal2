@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -26,7 +27,8 @@ public class Surveyor {
 	@Column(length = 20)
     private String lastName;
     @OneToMany(mappedBy="surveyor")
-    @JsonManagedReference("surveyor_surveys")
+    //@JsonManagedReference("surveyor_surveys")
+    @JsonIgnore
     private List<Survey> surveys;
 	
 	public Surveyor() {
