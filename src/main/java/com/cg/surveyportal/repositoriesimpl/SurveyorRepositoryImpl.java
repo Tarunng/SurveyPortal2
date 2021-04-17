@@ -15,7 +15,7 @@ public class SurveyorRepositoryImpl implements ISurveyorRepository {
 
 	@Override
 	public List<Surveyor> findAll() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 	@Override
@@ -30,7 +30,7 @@ public class SurveyorRepositoryImpl implements ISurveyorRepository {
 	}
 	@Override
 	public <S extends Surveyor> List<S> saveAll(Iterable<S> entities) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 	@Override

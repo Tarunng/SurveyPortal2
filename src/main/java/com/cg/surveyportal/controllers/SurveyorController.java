@@ -27,55 +27,55 @@ public class SurveyorController {
 	ISurveyorService surveyorService;
 	
 	@GetMapping("/populate")
-	private void populate()
+	public void populate()
 	{
 		surveyorService.populateSurveyor();
 	}
 	
 	@GetMapping("/count")
-	private ResponseEntity<Long> countRecords()
+	public ResponseEntity<Long> countRecords()
 	{
 		return new ResponseEntity<>(surveyorService.getRecordsCount(),HttpStatus.ACCEPTED);
 	}
 	
 	@GetMapping("/allsurveyors")
-	private ResponseEntity<List<Surveyor>> getAllSurveyors()
+	public ResponseEntity<List<Surveyor>> getAllSurveyors()
 	{
 		return new ResponseEntity<>( surveyorService.getAllSurveyors(),HttpStatus.ACCEPTED);
 	}
 	
 	@GetMapping("/findbyid/{id}")
-	private ResponseEntity<Surveyor> getSurveyorById(@PathVariable("id") Long id) throws NumberFormatException, SurveyorNotFoundException
+	public ResponseEntity<Surveyor> getSurveyorById(@PathVariable("id") Long id) throws NumberFormatException, SurveyorNotFoundException
 	{
 		return new ResponseEntity<>(surveyorService.getById(id),HttpStatus.OK);
 	}
 	
 	@GetMapping("/findbyusername/{username}")
-	private ResponseEntity<Surveyor> getSurveyorByUsername(@PathVariable("username") String username) throws InvalidSurveyorException
+	public ResponseEntity<Surveyor> getSurveyorByUsername(@PathVariable("username") String username) throws InvalidSurveyorException
 	{
 		return new ResponseEntity<>(surveyorService.getByUsername(username),HttpStatus.ACCEPTED);
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	private ResponseEntity<String> deleteById(@PathVariable("id") long id) throws InvalidSurveyorException
+	public ResponseEntity<String> deleteById(@PathVariable("id") long id) throws InvalidSurveyorException
 	{
 		return new ResponseEntity<>(surveyorService.removeById(id),HttpStatus.OK);
 	}
 	
 	@PostMapping("/add")
-	private ResponseEntity<String> addSurveyor(@RequestBody Surveyor surveyor) throws InvalidSurveyorException
+	public ResponseEntity<String> addSurveyor(@RequestBody Surveyor surveyor) throws InvalidSurveyorException
 	{
 		return new ResponseEntity<>(surveyorService.add(surveyor),HttpStatus.ACCEPTED);
 	}
 	
 	@DeleteMapping("deleteAll")
-	private ResponseEntity<String> deleteAllRecords()
+	public ResponseEntity<String> deleteAllRecords()
 	{
 		return new ResponseEntity<>(surveyorService.removeAllRecords(),HttpStatus.OK);
 	}
 	
 	@PutMapping("update")
-	private ResponseEntity<String> updateRecord(@RequestBody Surveyor surveyor) throws InvalidSurveyorException, SurveyorNotFoundException
+	public ResponseEntity<String> updateRecord(@RequestBody Surveyor surveyor) throws InvalidSurveyorException, SurveyorNotFoundException
 	{
 		return new ResponseEntity<>(surveyorService.update(surveyor),HttpStatus.OK);
 		

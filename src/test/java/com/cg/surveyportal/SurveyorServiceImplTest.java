@@ -32,7 +32,7 @@ import java.util.Optional;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class SurveyorServiceImplTest {
+class SurveyorServiceImplTest {
 	
 	@Autowired
 	ISurveyorService surveyorService;
@@ -58,7 +58,7 @@ public class SurveyorServiceImplTest {
 	
 	@Test
 	@DisplayName ("Positive test case for getting all Surveyor")
-	public void testgetAllSurveyors()
+	 void testgetAllSurveyors()
 	{
 
 		Mockito.when(surveyorRepository.findAll()).thenReturn(Stream.of(sv).collect(Collectors.toList()));
@@ -67,7 +67,7 @@ public class SurveyorServiceImplTest {
 	
 	@Test
 	@DisplayName ("Negative test case for getting all Surveyor")
-	public void testgetAllSurveyorsNegative()
+	 void testgetAllSurveyorsNegative()
 	{
 		
 		Mockito.when(surveyorRepository.findAll()).thenReturn(Stream.of(sv).collect(Collectors.toList()));
@@ -77,7 +77,7 @@ public class SurveyorServiceImplTest {
 	@Test
 	@DisplayName ("Positive test case for Adding Surveyor")
 	
-	public void testadd() throws InvalidSurveyorException
+	 void testadd() throws InvalidSurveyorException
 	{
 		
 		
@@ -90,7 +90,7 @@ public class SurveyorServiceImplTest {
 	@Test
 	@DisplayName ("Negative test case for Adding Surveyor")
 	
-	public void testaddNegative() throws InvalidSurveyorException
+	 void testaddNegative() throws InvalidSurveyorException
 	{
 		
 		Surveyor serveyor = new Surveyor();
@@ -110,7 +110,7 @@ public class SurveyorServiceImplTest {
 	
 	@Test
 	@DisplayName ("Positive Test case for getting Surveyor by ID")
-	public void testgetById() throws SurveyorNotFoundException 
+	 void testgetById() throws SurveyorNotFoundException 
 	{
 		Mockito.when(surveyorRepository.findById(sv.getId())).thenReturn(Optional.of(sv));
 		assertEquals(sv,surveyorService.getById(20l));
@@ -119,7 +119,7 @@ public class SurveyorServiceImplTest {
 	
 	@Test
 	@DisplayName ("Negative Test case for getting Surveyor by ID")
-	public void testgetByIdNegative() throws SurveyorNotFoundException 
+	 void testgetByIdNegative() throws SurveyorNotFoundException 
 	{
 		Mockito.when(surveyorRepository.findById(sv.getId())).thenReturn(Optional.of(sv));
 		Assertions.assertThrows(SurveyorNotFoundException.class, ()-> surveyorService.getById(21l));
@@ -129,7 +129,7 @@ public class SurveyorServiceImplTest {
 	
 	@Test
 	@DisplayName ("Positive Test case for getting Surveyor by Username")
-	public void testgetByUsername() throws SurveyorNotFoundException, InvalidSurveyorException 
+	 void testgetByUsername() throws SurveyorNotFoundException, InvalidSurveyorException 
 	{
 		
 		
@@ -141,7 +141,7 @@ public class SurveyorServiceImplTest {
 	
 	@Test
 	@DisplayName ("Negative Test case for getting Surveyor by Username")
-	public void testgetByUsernameNegative() throws SurveyorNotFoundException, InvalidSurveyorException 
+	 void testgetByUsernameNegative() throws SurveyorNotFoundException, InvalidSurveyorException 
 	{
 		Surveyor serveyor = new Surveyor();
 		serveyor.setId(21l);
@@ -159,7 +159,7 @@ public class SurveyorServiceImplTest {
 	
 	@Test
 	@DisplayName("Positive Test Case for updating record")
-	public void testupdate() throws InvalidSurveyorException, SurveyorNotFoundException
+	 void testupdate() throws InvalidSurveyorException, SurveyorNotFoundException
 	{
 		Surveyor serveyor = new Surveyor();
 		serveyor.setId(21l);
@@ -177,7 +177,7 @@ public class SurveyorServiceImplTest {
 	
 	@Test
 	@DisplayName("Negative Test Case for updating record")
-	public void testupdateNegative() throws InvalidSurveyorException, SurveyorNotFoundException
+	 void testupdateNegative() throws InvalidSurveyorException, SurveyorNotFoundException
 	{
 		Surveyor serveyor = new Surveyor();
 		serveyor.setId(21l);
@@ -196,7 +196,7 @@ public class SurveyorServiceImplTest {
 	
 	@Test
 	@DisplayName("Positive Test Case for Getting Record Count")
-	public void testgetRecordsCount()
+	 void testgetRecordsCount()
 	{
 		
 		Long a = 2l;
@@ -206,7 +206,7 @@ public class SurveyorServiceImplTest {
 	
 	@Test
 	@DisplayName("Negative Test Case for Getting Record Count")
-	public void testgetRecordsCountNegative()
+	 void testgetRecordsCountNegative()
 	{
 		
 		Long a = 2l;
@@ -221,7 +221,7 @@ public class SurveyorServiceImplTest {
 	@Test
 	@DisplayName("Positive Test Case for removing all Records Count")
 	
-	public void testremoveAllRecords()
+	 void testremoveAllRecords()
 	{
 		String s = "All Records Deleted ";
 		assertThat(surveyorService.removeAllRecords()).isEqualTo(s);
@@ -232,7 +232,7 @@ public class SurveyorServiceImplTest {
 	@Test
 	@DisplayName("Negative Test Case for removing all Records Count")
 	
-	public void testremoveAllRecordsNegative()
+	 void testremoveAllRecordsNegative()
 	{
 		String s = "All Records Not Deleted ";
 		assertThat(surveyorService.removeAllRecords()).isNotEqualTo(s);
@@ -243,7 +243,7 @@ public class SurveyorServiceImplTest {
 	
 	@Test
 	@DisplayName("Positive Test Case for remove record by id")
-	public void testremoveById() throws InvalidSurveyorException
+	 void testremoveById() throws InvalidSurveyorException
 	{
 		
 		
@@ -256,7 +256,7 @@ public class SurveyorServiceImplTest {
 	
 	@Test
 	@DisplayName("Negative Test Case for remove record by id")
-	public void testremoveByIdNegative() throws InvalidSurveyorException
+	 void testremoveByIdNegative() throws InvalidSurveyorException
 	{
 		
 		
